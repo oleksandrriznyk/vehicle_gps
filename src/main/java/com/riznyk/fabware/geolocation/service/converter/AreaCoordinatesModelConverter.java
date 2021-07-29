@@ -1,4 +1,4 @@
-package com.riznyk.fabware.geolocation.persistence.entity;
+package com.riznyk.fabware.geolocation.service.converter;
 
 import com.riznyk.fabware.geolocation.web.controller.model.AreaCoordinatesModel;
 import org.springframework.core.convert.converter.Converter;

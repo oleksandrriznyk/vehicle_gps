@@ -1,11 +1,11 @@
 package com.riznyk.fabware.geolocation.service;
 
 import com.riznyk.fabware.geolocation.exception.VehicleEntityNotFoundException;
-import com.riznyk.fabware.geolocation.persistence.entity.AreaCoordinatesModelConverter;
 import com.riznyk.fabware.geolocation.persistence.entity.GpsEntity;
 import com.riznyk.fabware.geolocation.persistence.entity.VehicleEntity;
 import com.riznyk.fabware.geolocation.persistence.repository.GpsRepository;
 import com.riznyk.fabware.geolocation.persistence.repository.VehicleRepository;
+import com.riznyk.fabware.geolocation.service.converter.AreaCoordinatesModelConverter;
 import com.riznyk.fabware.geolocation.service.converter.VehicleModelConverter;
 import com.riznyk.fabware.geolocation.web.controller.model.AreaCoordinatesModel;
 import com.riznyk.fabware.geolocation.web.controller.model.VehicleModel;
