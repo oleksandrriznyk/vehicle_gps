@@ -9,10 +9,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,8 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 
-import static org.springframework.http.HttpStatus.OK;
-import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
+import static org.springframework.http.HttpStatus.ACCEPTED;
 
 @Slf4j
 @RestController
@@ -34,25 +31,22 @@ public class VehicleController extends AbstractExceptionHandlerController {
   private final VehicleService vehicleService;
 
 
-  @ResponseStatus(value = OK)
-  @PutMapping(value = "/{id}", produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE)
+  @ResponseStatus(value = ACCEPTED)
+  @PutMapping(value = "/{id}")
   public void updateVehicleGpsCoordinates(@PathVariable("id") Long id,
                                           @Valid @RequestBody GpsCoordinatesModel gpsCoordinatesModel) {
-    log.info("Updating gps coordinates for vehicle with id {}", id);
+    log.debug("Updating gps coordinates for vehicle with id {}", id);
 
-    vehicleService.updateGpsCoordinates(id, gpsCoordinatesModel);
+    vehicleService.updateGpsCoordinates(id, gpsCoordinatesModel.getLatitude(), gpsCoordinatesModel.getLongitude());
   }
 
-  @GetMapping(produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE)
-  public ResponseEntity<Page<VehicleModel>> getVehiclesInArea(@PageableDefault Pageable pageable,
-                                                              @RequestParam(name = "areaCoordinates")
-                                                              @Valid AreaCoordinatesModel areaCoordinates) {
+  @GetMapping
+  public Page<VehicleModel> getVehiclesInArea(@PageableDefault Pageable pageable,
+                                              @RequestParam(name = "areaCoordinates")
+                                              @Valid AreaCoordinatesModel areaCoordinates) {
+    log.debug("Searching Vehicles in given area {}", areaCoordinates);
 
-    log.info("Searching Vehicles in given area {}", areaCoordinates);
-
-    final Page<VehicleModel> vehiclesInArea = vehicleService.findVehiclesInArea(areaCoordinates, pageable);
-
-    return ResponseEntity.ok(vehiclesInArea);
+    return vehicleService.findVehiclesInArea(areaCoordinates, pageable);
   }
 
 }

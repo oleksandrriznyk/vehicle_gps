@@ -46,4 +46,16 @@ public class GpsEntity {
         .build();
   }
 
+  public GpsEntity withLatitude(Double latitude) {
+    return this.toBuilder()
+        .latitude(latitude)
+        .build();
+  }
+
+  public GpsEntity withLongitude(Double longitude) {
+    return this.toBuilder()
+        .longitude(longitude)
+        .build();
+  }
+
 }

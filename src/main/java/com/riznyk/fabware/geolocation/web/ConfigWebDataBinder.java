@@ -17,6 +17,7 @@ public class ConfigWebDataBinder {
 
   private final ObjectMapper objectMapper;
 
+
   @InitBinder
   public void initBinder(WebDataBinder binder) {
     addJsonEditor(binder, AreaCoordinatesModel.class);

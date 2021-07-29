@@ -10,6 +10,8 @@ import lombok.ToString;
 @ToString
 public class VehicleModel {
 
+  private Long vehicleId;
+
   @JsonProperty(value = "gps")
   private GpsCoordinatesModel gpsCoordinatesModel;
 
