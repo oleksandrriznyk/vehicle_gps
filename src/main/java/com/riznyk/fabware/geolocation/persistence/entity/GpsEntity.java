@@ -40,12 +40,6 @@ public class GpsEntity {
   private VehicleEntity vehicleEntity;
 
 
-  public GpsEntity withVehicleEntity(VehicleEntity vehicleEntity) {
-    return this.toBuilder()
-        .vehicleEntity(vehicleEntity)
-        .build();
-  }
-
   public GpsEntity withLatitude(Double latitude) {
     return this.toBuilder()
         .latitude(latitude)

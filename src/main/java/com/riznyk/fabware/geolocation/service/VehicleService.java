@@ -64,5 +64,4 @@ public class VehicleService {
         .withLongitude(longitude);
   }
 
-
 }
